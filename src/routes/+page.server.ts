@@ -30,7 +30,7 @@ function getImageDimensions(imagePath: string) {
 	return null;
 }
 
-export async function load() {
+export async function load({ setHeaders }) {
 	const imageGroupDimensions: ImageRowsItem[][] = imageGroups.map((group) => {
 		const imageData = group.map((imagePath) => {
 			const dimensions = getImageDimensions(imagePath);
@@ -56,6 +56,10 @@ export async function load() {
 			url: img.src,
 			width: `${((maxHeight * img.aspectRatio) / totalWidth) * 100}%`
 		}));
+	});
+
+	setHeaders({
+		'Cache-Control': 'max-age=60, stale-while-revalidate=86400'
 	});
 
 	return {

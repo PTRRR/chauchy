@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>Chauchy</title>
+	<title>Chauchy | Un cluster à Denens</title>
 	<meta
 		name="description"
 		content="Ancienne grange du 18ᵉ siècle au cœur du village de Denes, entièrement rénovée selon des
