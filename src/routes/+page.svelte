@@ -96,6 +96,13 @@
 			👉 Intéressé·e ? Contacte-nous : <a href="mailto:info@chauchy.ch">info@chauchy.ch</a> – écris-nous
 			quelques lignes sur qui tu es et pourquoi tu souhaiterais habiter ici.
 		</p>
+
+		<div class="legends">
+			<img src="/images/resized/004d_Option_subdivision.jpg" alt="" />
+			<p style="color: red; top: 35%; left: 80%;">
+				Unité libre avec en rouge la possibilité de subdivision
+			</p>
+		</div>
 	</section>
 
 	<section class="full">
@@ -220,12 +227,21 @@
 
 	<section id="plans">
 		<h2>Plans</h2>
-		<img src="/images/resized/004d_Option_subdivision.jpg" alt="" />
-	</section>
-
-	<section class="full">
-		<ImagesRow items={data.imageGroupDimensions[2]} />
-		<ImagesRow items={data.imageGroupDimensions[3]} />
+		<img src="/images/resized/002c_COUPE PERSPECTIVE_NB.jpg" alt="" />
+		<div class="legends">
+			<img src="/images/resized/003b.jpg" alt="" />
+			<p style="top: 11%; left: 60%; max-width: 10rem">Jardin partagé avec terasse</p>
+			<p style="top: 40%; left: 38%; max-width: 4rem">Pièce à vivre commune</p>
+			<p style="top: 68%; left: 45%;">Grand jardin partagé avec potager</p>
+		</div>
+		<div class="legends">
+			<img src="/images/resized/004b_PLAN_R+2.jpg" alt="" />
+			<p style="color: red; top: 62.4%; left: 64%;">Unité libre dans l'état actuel</p>
+		</div>
+		<div class="legends">
+			<img src="/images/resized/004c_PLAN_R+1.jpg" alt="" />
+			<p style="top: 15%; left: 70%;">Cuisine partagée</p>
+		</div>
 	</section>
 </div>
 
@@ -306,6 +322,20 @@
 			transform: translate(-50%, 0%);
 			font-size: 6rem;
 			font-weight: 100;
+		}
+	}
+
+	.legends {
+		width: 100%;
+		position: relative;
+
+		p {
+			position: absolute;
+			max-width: min(20vw, 15rem);
+			width: 100%;
+			font-size: min(2vw, 1rem);
+			transform: translate(-50%, -50%);
+			text-align: center;
 		}
 	}
 

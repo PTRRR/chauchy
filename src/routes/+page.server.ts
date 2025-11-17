@@ -1,44 +1,40 @@
-import { readFileSync } from 'fs';
 import { join } from 'path';
-import sizeOf from 'image-size';
 import type { ImageRowsItem } from '$lib/components/ImagesRow.svelte';
 
 const imageGroups = [
 	[
-		'/images/resized/003.jpg',
-		'/images/resized/008.jpg',
-		'/images/resized/007.jpg',
-		'/images/resized/009.jpg'
+		{ src: '003.jpg', width: 2667, height: 2000 },
+		{ src: '008.jpg', width: 2667, height: 2000 },
+		{ src: '007.jpg', width: 2000, height: 2667 },
+		{ src: '009.jpg', width: 2000, height: 2667 }
 	],
-	['/images/resized/004.jpg', '/images/resized/005.jpg', '/images/resized/006.jpg'],
-	['/images/resized/002c_COUPE PERSPECTIVE_NB.jpg', '/images/resized/003b.jpg'],
-	['/images/resized/004b_PLAN_R+2.jpg', '/images/resized/004c_PLAN_R+1.jpg'],
-	['/images/resized/011_CARTES_WEB_A42.jpg', '/images/resized/012_CARTES_WEB_A4.jpg']
+	[
+		{ src: '004.jpg', width: 2667, height: 2000 },
+		{ src: '005.jpg', width: 2667, height: 2000 },
+		{ src: '006.jpg', width: 2667, height: 2000 }
+	],
+	[
+		{ src: '002c_COUPE PERSPECTIVE_NB.jpg', width: 2262, height: 2000 },
+		{ src: '003b.jpg', width: 1501, height: 2000 }
+	],
+	[
+		{ src: '004b_PLAN_R+2.jpg', width: 2244, height: 2000 },
+		{ src: '004c_PLAN_R+1.jpg', width: 2159, height: 2000 }
+	],
+	[
+		{ src: '011_CARTES_WEB_A42.jpg', width: 2829, height: 2000 },
+		{ src: '012_CARTES_WEB_A4.jpg', width: 2829, height: 2000 }
+	]
 ];
-
-function getImageDimensions(imagePath: string) {
-	try {
-		const fullPath = join(process.cwd(), 'static', imagePath);
-		const buffer = readFileSync(fullPath);
-		const dimensions = sizeOf(buffer);
-		if (dimensions.width && dimensions.height) {
-			return { width: dimensions.width, height: dimensions.height };
-		}
-	} catch (error) {
-		console.error(`Error reading image ${imagePath}:`, error);
-	}
-	return null;
-}
 
 export async function load({ setHeaders }) {
 	const imageGroupDimensions: ImageRowsItem[][] = imageGroups.map((group) => {
-		const imageData = group.map((imagePath) => {
-			const dimensions = getImageDimensions(imagePath);
+		const imageData = group.map((image) => {
 			return {
-				src: imagePath,
-				width: dimensions?.width ?? 0,
-				height: dimensions?.height ?? 0,
-				aspectRatio: dimensions ? dimensions.width / dimensions.height : 1
+				src: join('images', 'resized', image.src),
+				width: image.width,
+				height: image.height,
+				aspectRatio: image.width / image.height
 			};
 		});
 
